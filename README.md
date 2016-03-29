@@ -1,5 +1,5 @@
 # Dockerfile for Discourse Parser
-==========================
+=====
 Dockerfile for the RST-style Discourse Parser
 
 DEVELOPERS
@@ -23,11 +23,9 @@ GENERAL INFOMRATION
 USAGE
 -----
 ```
-git clone https://github.com/vrann/discourse-parser-docker.git
-cd discourse-parser-docker
-docker build .
-docker run -i -t $container-id
-cd gCRF_dist/tools/crfsuite
-./crfsuite-stdin tag -pi -m ../../model/tree_build_set_CRF/label/intra.crfsuite test.txt
+docker pull vrann/discourse-parser-docker
+docker run -v /Path/to/text/files:/samples -i -t $container-id
+cd gCRF_dist/src
+python parse.py /samples/F0001.txt
 ```
 

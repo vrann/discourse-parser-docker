@@ -1,5 +1,13 @@
-FROM python:2.7.8
+#FROM python:2.7.8
+FROM java:7
+
 MAINTAINER Eugene Tulika "vranen@gmail.com"
+
+# Install Python.
+RUN \
+  apt-get update && \
+  apt-get install -y python python-dev python-pip python-virtualenv && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN wget http://pyyaml.org/download/pyyaml/PyYAML-3.09.tar.gz \ 
 	&& tar -zxf PyYAML-3.09.tar.gz \
@@ -34,7 +42,6 @@ RUN cd gCRF_dist/tools/crfsuite && \
 
 RUN cd gCRF_dist/tools/crfsuite \
 	&& ./crfsuite-stdin tag -pi -m ../../model/tree_build_set_CRF/label/intra.crfsuite test.txt
-	
-        
+
 CMD ["/bin/sh"]        
 
